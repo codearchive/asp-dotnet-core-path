@@ -13,11 +13,11 @@ namespace OdeToFood.Data
 
     public class InMemoryRestaurantData : IRestaurantData
     {
-        private List<Restaurant> restaurants;
+        readonly List<Restaurant> _restaurants;
 
         public InMemoryRestaurantData()
         {
-            restaurants = new List<Restaurant>()
+            _restaurants = new List<Restaurant>()
             {
                 new Restaurant {Id = 1, Name = "Pavel`s Pizza", Location = "Haifa", Cuisine = CuisineType.Italian},
                 new Restaurant {Id = 2, Name = "Cinnamon Club", Location = "London", Cuisine = CuisineType.Indian},
@@ -26,7 +26,7 @@ namespace OdeToFood.Data
         }
         public IEnumerable<Restaurant> GetAll()
         {
-            return restaurants.OrderBy(r => r.Name);
+            return _restaurants.OrderBy(r => r.Name);
         }
     }
 }
