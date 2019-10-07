@@ -18,9 +18,9 @@ namespace OdeToFood.Data
             };
         }
 
-        public IEnumerable<Restaurant> GetAll()
+        public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
         {
-            return _restaurants.OrderBy(r => r.Name);
+            return _restaurants.Where(r => string.IsNullOrEmpty(name) || r.Name.StartsWith(name)).OrderBy(r => r.Name);
         }
     }
 }
