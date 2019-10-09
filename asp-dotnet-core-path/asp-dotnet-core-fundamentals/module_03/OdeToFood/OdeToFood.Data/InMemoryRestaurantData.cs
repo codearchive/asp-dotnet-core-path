@@ -22,5 +22,10 @@ namespace OdeToFood.Data
         {
             return _restaurants.Where(r => string.IsNullOrEmpty(name) || r.Name.StartsWith(name)).OrderBy(r => r.Name);
         }
+
+        public Restaurant GetById(int id)
+        {
+            return _restaurants.SingleOrDefault(r => r.Id == id);
+        }
     }
 }
