@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using OdeToFood.Core;
 using OdeToFood.Data;
 
@@ -13,9 +14,16 @@ namespace OdeToFood.Pages.Restaurants
         {
             _restaurantData = restaurantData;
         }
-        public void OnGet(int restaurantId)
+        public IActionResult OnGet(int restaurantId)
         {
             Restaurant = _restaurantData.GetById(restaurantId);
+
+            if (Restaurant == null)
+            {
+                return RedirectToPage("./NotFound");
+            }
+
+            return Page();
         }
     }
 }
